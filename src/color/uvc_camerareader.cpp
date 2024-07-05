@@ -242,8 +242,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
 
     switch (command)
     {
-    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE:
-    {
+    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE: {
         uint8_t default_ae_mode;
         uint32_t min_exposure_time;
         uint32_t max_exposure_time;
@@ -311,8 +310,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_BRIGHTNESS:
-    {
+    case K4A_COLOR_CONTROL_BRIGHTNESS: {
         int16_t min_brightness;
         int16_t max_brightness;
         int16_t step_brightness;
@@ -354,8 +352,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_CONTRAST:
-    {
+    case K4A_COLOR_CONTROL_CONTRAST: {
         uint16_t min_contrast;
         uint16_t max_contrast;
         uint16_t step_contrast;
@@ -398,8 +395,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_SATURATION:
-    {
+    case K4A_COLOR_CONTROL_SATURATION: {
         uint16_t min_saturation;
         uint16_t max_saturation;
         uint16_t step_saturation;
@@ -442,8 +438,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_SHARPNESS:
-    {
+    case K4A_COLOR_CONTROL_SHARPNESS: {
         uint16_t min_sharpness;
         uint16_t max_sharpness;
         uint16_t step_sharpness;
@@ -486,8 +481,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_WHITEBALANCE:
-    {
+    case K4A_COLOR_CONTROL_WHITEBALANCE: {
         uint8_t default_wb_mode;
         uint16_t min_white_balance;
         uint16_t max_white_balance;
@@ -552,8 +546,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION:
-    {
+    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION: {
         uint16_t min_backlight_compensation;
         uint16_t max_backlight_compensation;
         uint16_t step_backlight_compensation;
@@ -596,8 +589,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_GAIN:
-    {
+    case K4A_COLOR_CONTROL_GAIN: {
         uint16_t min_gain;
         uint16_t max_gain;
         uint16_t step_gain;
@@ -640,8 +632,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY:
-    {
+    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY: {
         uint8_t min_powerline_freq;
         uint8_t max_powerline_freq;
         uint8_t step_powerline_freq;
@@ -684,8 +675,7 @@ k4a_result_t UVCCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         capabilities->valid = true;
     }
     break;
-    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY:
-    {
+    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY: {
         // Deprecated control. Return 0 for all capabilities which is current behaviour.
         capabilities->supportAuto = false;
         capabilities->minValue = 0;
@@ -721,8 +711,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
 
     switch (command)
     {
-    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE:
-    {
+    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE: {
         uint8_t ae_mode;
         uint32_t exposure_time;
 
@@ -758,8 +747,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = MapLinuxExposureToK4a((int32_t)exposure_time);
     }
     break;
-    case K4A_COLOR_CONTROL_BRIGHTNESS:
-    {
+    case K4A_COLOR_CONTROL_BRIGHTNESS: {
         int16_t brightness;
         res = uvc_get_brightness(m_pDeviceHandle, &brightness, UVC_GET_CUR);
         if (res < 0)
@@ -770,8 +758,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = (int32_t)brightness;
     }
     break;
-    case K4A_COLOR_CONTROL_CONTRAST:
-    {
+    case K4A_COLOR_CONTROL_CONTRAST: {
         uint16_t contrast;
         res = uvc_get_contrast(m_pDeviceHandle, &contrast, UVC_GET_CUR);
         if (res < 0)
@@ -782,8 +769,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = (int32_t)contrast;
     }
     break;
-    case K4A_COLOR_CONTROL_SATURATION:
-    {
+    case K4A_COLOR_CONTROL_SATURATION: {
         uint16_t saturation;
         res = uvc_get_saturation(m_pDeviceHandle, &saturation, UVC_GET_CUR);
         if (res < 0)
@@ -794,8 +780,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = (int32_t)saturation;
     }
     break;
-    case K4A_COLOR_CONTROL_SHARPNESS:
-    {
+    case K4A_COLOR_CONTROL_SHARPNESS: {
         uint16_t sharpness;
         res = uvc_get_sharpness(m_pDeviceHandle, &sharpness, UVC_GET_CUR);
         if (res < 0)
@@ -806,8 +791,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = (int32_t)sharpness;
     }
     break;
-    case K4A_COLOR_CONTROL_WHITEBALANCE:
-    {
+    case K4A_COLOR_CONTROL_WHITEBALANCE: {
         uint8_t wb_mode;
         uint16_t white_balance;
 
@@ -843,8 +827,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = white_balance;
     }
     break;
-    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION:
-    {
+    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION: {
         uint16_t backlight_compensation;
         res = uvc_get_backlight_compensation(m_pDeviceHandle, &backlight_compensation, UVC_GET_CUR);
         if (res < 0)
@@ -855,8 +838,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = (int32_t)backlight_compensation;
     }
     break;
-    case K4A_COLOR_CONTROL_GAIN:
-    {
+    case K4A_COLOR_CONTROL_GAIN: {
         uint16_t gain;
         res = uvc_get_gain(m_pDeviceHandle, &gain, UVC_GET_CUR);
         if (res < 0)
@@ -867,8 +849,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = (int32_t)gain;
     }
     break;
-    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY:
-    {
+    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY: {
         uint8_t powerline_freq;
         res = uvc_get_power_line_frequency(m_pDeviceHandle, &powerline_freq, UVC_GET_CUR);
         if (res < 0)
@@ -879,8 +860,7 @@ k4a_result_t UVCCameraReader::GetCameraControl(const k4a_color_control_command_t
         *pValue = (int32_t)powerline_freq;
     }
     break;
-    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY:
-    {
+    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY: {
         *pValue = 0;
         LOG_WARNING("K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY is deprecated and does nothing.", 0);
     }
@@ -1095,8 +1075,7 @@ k4a_result_t UVCCameraReader::SetCameraControl(const k4a_color_control_command_t
             return K4A_RESULT_FAILED;
         }
         break;
-    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY:
-    {
+    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY: {
         LOG_WARNING("K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY is deprecated and does nothing.", 0);
     }
     break;
@@ -1142,15 +1121,13 @@ void UVCCameraReader::Callback(uvc_frame_t *frame)
             {
                 switch (pItem->MetadataId)
                 {
-                case MetadataId_FrameAlignInfo:
-                {
+                case MetadataId_FrameAlignInfo: {
                     PKSCAMERA_CUSTOM_METADATA_FrameAlignInfo pFrameAlignInfo =
                         (PKSCAMERA_CUSTOM_METADATA_FrameAlignInfo)pItem;
                     framePTS = pFrameAlignInfo->FramePTS;
                 }
                 break;
-                case MetadataId_CaptureStats:
-                {
+                case MetadataId_CaptureStats: {
                     PKSCAMERA_METADATA_CAPTURESTATS pCaptureStats = (PKSCAMERA_METADATA_CAPTURESTATS)pItem;
                     if (pCaptureStats->Flags & KSCAMERA_METADATA_CAPTURESTATS_FLAG_EXPOSURETIME)
                     {

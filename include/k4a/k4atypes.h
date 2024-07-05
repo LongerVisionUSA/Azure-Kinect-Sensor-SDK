@@ -35,7 +35,7 @@ extern "C" {
     typedef struct _##_handle_name_                                                                                    \
     {                                                                                                                  \
         size_t _rsvd; /**< Reserved, do not use. */                                                                    \
-    } * _handle_name_;
+    } *_handle_name_;
 
 /**
  * \defgroup csdk C Reference

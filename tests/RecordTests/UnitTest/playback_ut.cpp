@@ -306,24 +306,22 @@ TEST_F(playback_ut, playback_seek_test)
     ASSERT_TRUE(validate_imu_sample(imu_sample, imu_timestamp));
 
     int64_t recording_length = (int64_t)k4a_playback_get_recording_length_usec(handle) + 1;
-    std::pair<int64_t, k4a_playback_seek_origin_t> start_seek_combinations[] = { // Beginning
-                                                                                 { 0, K4A_PLAYBACK_SEEK_BEGIN },
-                                                                                 { -recording_length,
-                                                                                   K4A_PLAYBACK_SEEK_END },
-                                                                                 // Past beginning
-                                                                                 { -10, K4A_PLAYBACK_SEEK_BEGIN },
-                                                                                 { -recording_length - 10,
-                                                                                   K4A_PLAYBACK_SEEK_END }
+    std::pair<int64_t, k4a_playback_seek_origin_t> start_seek_combinations[] = {
+        // Beginning
+        { 0, K4A_PLAYBACK_SEEK_BEGIN },
+        { -recording_length, K4A_PLAYBACK_SEEK_END },
+        // Past beginning
+        { -10, K4A_PLAYBACK_SEEK_BEGIN },
+        { -recording_length - 10, K4A_PLAYBACK_SEEK_END }
     };
 
-    std::pair<int64_t, k4a_playback_seek_origin_t> end_seek_combinations[] = { // End
-                                                                               { 0, K4A_PLAYBACK_SEEK_END },
-                                                                               { recording_length,
-                                                                                 K4A_PLAYBACK_SEEK_BEGIN },
-                                                                               // Past end
-                                                                               { 10, K4A_PLAYBACK_SEEK_END },
-                                                                               { recording_length + 10,
-                                                                                 K4A_PLAYBACK_SEEK_BEGIN }
+    std::pair<int64_t, k4a_playback_seek_origin_t> end_seek_combinations[] = {
+        // End
+        { 0, K4A_PLAYBACK_SEEK_END },
+        { recording_length, K4A_PLAYBACK_SEEK_BEGIN },
+        // Past end
+        { 10, K4A_PLAYBACK_SEEK_END },
+        { recording_length + 10, K4A_PLAYBACK_SEEK_BEGIN }
     };
 
     std::pair<int64_t, k4a_playback_seek_origin_t> middle_seek_combinations[] = {

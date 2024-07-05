@@ -333,7 +333,7 @@ K4ADockControlStatus K4ADeviceDockControl::Show()
 
     if (m_firstRun || depthEnabledStateChanged)
     {
-        ImGui::SetNextTreeNodeOpen(m_config.EnableDepthCamera);
+        ImGui::SetNextItemOpen(m_config.EnableDepthCamera);
     }
 
     ImGui::Indent();
@@ -376,7 +376,7 @@ K4ADockControlStatus K4ADeviceDockControl::Show()
 
     if (m_firstRun || colorEnableStateChanged)
     {
-        ImGui::SetNextTreeNodeOpen(m_config.EnableColorCamera);
+        ImGui::SetNextItemOpen(m_config.EnableColorCamera);
     }
 
     ImGui::Indent();
@@ -710,7 +710,7 @@ K4ADockControlStatus K4ADeviceDockControl::Show()
 
     if (m_firstRun && (m_syncInConnected || m_syncOutConnected))
     {
-        ImGui::SetNextTreeNodeOpen(true);
+        ImGui::SetNextItemOpen(true);
     }
     if (ImGui::TreeNode("External Sync"))
     {
@@ -775,9 +775,9 @@ K4ADockControlStatus K4ADeviceDockControl::Show()
 
         ImGui::Text("Build Config: %s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
         ImGui::Text("Signature type: %s",
-                    versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ?
-                        "Microsoft" :
-                        versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
+                    versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" :
+                    versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" :
+                                                                                    "Unsigned");
 
         ImGui::TreePop();
     }
@@ -923,19 +923,18 @@ bool K4ADeviceDockControl::StartCameras()
                 //
                 pollingTimeout = SubordinateModeStartupTimeout;
             }
-            return PollSensor<k4a::capture>("Cameras",
-                                            pDevice,
-                                            pCameraDataSource,
-                                            pPaused,
-                                            pCamerasStarted,
-                                            pAbortInProgress,
-                                            [](k4a::device *device,
-                                               k4a::capture *capture,
-                                               std::chrono::milliseconds timeout) {
-                                                return device->get_capture(capture, timeout);
-                                            },
-                                            [](k4a::device *device) { device->stop_cameras(); },
-                                            pollingTimeout);
+            return PollSensor<k4a::capture>(
+                "Cameras",
+                pDevice,
+                pCameraDataSource,
+                pPaused,
+                pCamerasStarted,
+                pAbortInProgress,
+                [](k4a::device *device, k4a::capture *capture, std::chrono::milliseconds timeout) {
+                    return device->get_capture(capture, timeout);
+                },
+                [](k4a::device *device) { device->stop_cameras(); },
+                pollingTimeout);
         });
 
     return true;
@@ -943,12 +942,13 @@ bool K4ADeviceDockControl::StartCameras()
 
 void K4ADeviceDockControl::StopCameras()
 {
-    StopPollingThread(&m_cameraPollingThread,
-                      &m_device,
-                      [](k4a::device *device) { device->stop_cameras(); },
-                      &m_cameraDataSource,
-                      &m_camerasStarted,
-                      &m_camerasAbortInProgress);
+    StopPollingThread(
+        &m_cameraPollingThread,
+        &m_device,
+        [](k4a::device *device) { device->stop_cameras(); },
+        &m_cameraDataSource,
+        &m_camerasStarted,
+        &m_camerasAbortInProgress);
 }
 
 bool K4ADeviceDockControl::StartMicrophone()
@@ -1022,19 +1022,18 @@ bool K4ADeviceDockControl::StartImu()
                 //
                 pollingTimeout = SubordinateModeStartupTimeout;
             }
-            return PollSensor<k4a_imu_sample_t>("IMU",
-                                                pDevice,
-                                                pImuDataSource,
-                                                pPaused,
-                                                pImuStarted,
-                                                pAbortInProgress,
-                                                [](k4a::device *device,
-                                                   k4a_imu_sample_t *sample,
-                                                   std::chrono::milliseconds timeout) {
-                                                    return device->get_imu_sample(sample, timeout);
-                                                },
-                                                [](k4a::device *device) { device->stop_imu(); },
-                                                pollingTimeout);
+            return PollSensor<k4a_imu_sample_t>(
+                "IMU",
+                pDevice,
+                pImuDataSource,
+                pPaused,
+                pImuStarted,
+                pAbortInProgress,
+                [](k4a::device *device, k4a_imu_sample_t *sample, std::chrono::milliseconds timeout) {
+                    return device->get_imu_sample(sample, timeout);
+                },
+                [](k4a::device *device) { device->stop_imu(); },
+                pollingTimeout);
         });
 
     return true;
@@ -1042,12 +1041,13 @@ bool K4ADeviceDockControl::StartImu()
 
 void K4ADeviceDockControl::StopImu()
 {
-    StopPollingThread(&m_imuPollingThread,
-                      &m_device,
-                      [](k4a::device *device) { device->stop_imu(); },
-                      &m_imuDataSource,
-                      &m_imuStarted,
-                      &m_imuAbortInProgress);
+    StopPollingThread(
+        &m_imuPollingThread,
+        &m_device,
+        [](k4a::device *device) { device->stop_imu(); },
+        &m_imuDataSource,
+        &m_imuStarted,
+        &m_imuAbortInProgress);
 }
 
 void K4ADeviceDockControl::SetViewType(K4AWindowSet::ViewType viewType)

@@ -221,8 +221,7 @@ public:
     }
 
     K4AMJPGImageConverter(k4a_color_resolution_t resolution) :
-        K4AColorImageConverterBase(resolution),
-        m_decompressor(tjInitDecompress())
+        K4AColorImageConverterBase(resolution), m_decompressor(tjInitDecompress())
     {
     }
 

@@ -4,6 +4,10 @@
 #ifndef UTCOMMON_H
 #define UTCOMMON_H
 
+#ifndef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200809L
+#endif
+#include <strings.h>
 #include <gtest/gtest.h>
 #include "gmock/gmock.h"
 

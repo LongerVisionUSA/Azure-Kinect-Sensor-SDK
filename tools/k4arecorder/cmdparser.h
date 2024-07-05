@@ -21,9 +21,7 @@ class ArgumentError : public std::runtime_error
 {
 public:
     ArgumentError(const std::string option, const std::string message) :
-        std::runtime_error(message),
-        m_option(option),
-        m_message(message)
+        std::runtime_error(message), m_option(option), m_message(message)
     {
     }
 

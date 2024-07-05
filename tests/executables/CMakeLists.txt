@@ -17,12 +17,12 @@ target_compile_definitions(executables_ft_custom PRIVATE -DUSE_CUSTOM_TEST_CONFI
 target_link_libraries(executables_ft PRIVATE 
     k4a::k4a
     k4ainternal::utcommon
-    gtest::gtest)
+    gtest)
 
 target_link_libraries(executables_ft_custom PRIVATE 
     k4a::k4a
     k4ainternal::utcommon
-    gtest::gtest)
+    gtest)
 
 k4a_add_tests(TARGET executables_ft HARDWARE_REQUIRED TEST_TYPE FUNCTIONAL)
 k4a_add_tests(TARGET executables_ft_custom HARDWARE_REQUIRED TEST_TYPE FUNCTIONAL_CUSTOM)

@@ -4,8 +4,8 @@
 add_executable(global_ft global.cpp)
 
 target_link_libraries(global_ft PRIVATE
-    azure::aziotsharedutil
-    gtest::gtest
+    aziotsharedutil
+    gtest
     k4ainternal::global
     k4ainternal::utcommon)
 

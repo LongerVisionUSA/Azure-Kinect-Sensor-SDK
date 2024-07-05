@@ -5,6 +5,7 @@
 #define _CRT_NONSTDC_NO_DEPRECATE
 #endif
 
+#include <strings.h>
 #include <k4ainternal/firmware.h>
 #include <k4ainternal/logging.h>
 
@@ -19,7 +20,6 @@
 #else
 #include <unistd.h>
 
-#include <strings.h>
 #define _stricmp strcasecmp
 #define EXECUTABLE_NAME "AzureKinectFirmwareTool"
 #endif

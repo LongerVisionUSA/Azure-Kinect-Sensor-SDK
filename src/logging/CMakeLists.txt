@@ -11,7 +11,7 @@ target_include_directories(k4a_logging PUBLIC
 
 # Dependencies of this library
 target_link_libraries(k4a_logging PUBLIC 
-    azure::aziotsharedutil
+    aziotsharedutil
     spdlog::spdlog
     k4ainternal::rwlock
     k4ainternal::global

@@ -70,12 +70,12 @@ CFrameContext::CFrameContext(IMFSample *pSample)
 
         if (SUCCEEDED(hr = m_spSample->GetUnknown(MFSampleExtension_CaptureMetadata, IID_PPV_ARGS(&spCaptureMetaData))))
         {
-            m_exposureTime = (uint64_t)(
-                MFGetAttributeUINT64(spCaptureMetaData.Get(), MF_CAPTURE_METADATA_EXPOSURE_TIME, 0) *
-                0.1f); // hns to micro-second
+            m_exposureTime =
+                (uint64_t)(MFGetAttributeUINT64(spCaptureMetaData.Get(), MF_CAPTURE_METADATA_EXPOSURE_TIME, 0) *
+                           0.1f); // hns to micro-second
 
-            m_whiteBalance = (uint32_t)(
-                MFGetAttributeUINT32(spCaptureMetaData.Get(), MF_CAPTURE_METADATA_WHITEBALANCE, 0));
+            m_whiteBalance =
+                (uint32_t)(MFGetAttributeUINT32(spCaptureMetaData.Get(), MF_CAPTURE_METADATA_WHITEBALANCE, 0));
 
             m_isoSpeed = (uint32_t)(MFGetAttributeUINT32(spCaptureMetaData.Get(), MF_CAPTURE_METADATA_ISO_SPEED, 0));
 
@@ -97,8 +97,7 @@ CFrameContext::CFrameContext(IMFSample *pSample)
                         {
                             switch (pItem->MetadataId)
                             {
-                            case MetadataId_FrameAlignInfo:
-                            {
+                            case MetadataId_FrameAlignInfo: {
                                 PKSCAMERA_CUSTOM_METADATA_FrameAlignInfo pFrameAlignInfo =
                                     (PKSCAMERA_CUSTOM_METADATA_FrameAlignInfo)pItem;
                                 m_capturePTS = pFrameAlignInfo->FramePTS;
@@ -558,8 +557,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
 
     switch (command)
     {
-    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE:
-    {
+    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_CAMERACONTROL,
                                  KSPROPERTY_CAMERACONTROL_EXPOSURE,
                                  &supportAuto,
@@ -580,8 +578,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         stepValue = 1;
     }
     break;
-    case K4A_COLOR_CONTROL_BRIGHTNESS:
-    {
+    case K4A_COLOR_CONTROL_BRIGHTNESS: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_BRIGHTNESS,
                                  &supportAuto,
@@ -591,8 +588,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
                                  &defaultValue);
     }
     break;
-    case K4A_COLOR_CONTROL_CONTRAST:
-    {
+    case K4A_COLOR_CONTROL_CONTRAST: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_CONTRAST,
                                  &supportAuto,
@@ -602,8 +598,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
                                  &defaultValue);
     }
     break;
-    case K4A_COLOR_CONTROL_SATURATION:
-    {
+    case K4A_COLOR_CONTROL_SATURATION: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_SATURATION,
                                  &supportAuto,
@@ -613,8 +608,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
                                  &defaultValue);
     }
     break;
-    case K4A_COLOR_CONTROL_SHARPNESS:
-    {
+    case K4A_COLOR_CONTROL_SHARPNESS: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_SHARPNESS,
                                  &supportAuto,
@@ -624,8 +618,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
                                  &defaultValue);
     }
     break;
-    case K4A_COLOR_CONTROL_WHITEBALANCE:
-    {
+    case K4A_COLOR_CONTROL_WHITEBALANCE: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_WHITEBALANCE,
                                  &supportAuto,
@@ -637,8 +630,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
         defaultMode = K4A_COLOR_CONTROL_MODE_AUTO;
     }
     break;
-    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION:
-    {
+    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_BACKLIGHT_COMPENSATION,
                                  &supportAuto,
@@ -648,8 +640,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
                                  &defaultValue);
     }
     break;
-    case K4A_COLOR_CONTROL_GAIN:
-    {
+    case K4A_COLOR_CONTROL_GAIN: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_GAIN,
                                  &supportAuto,
@@ -659,8 +650,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
                                  &defaultValue);
     }
     break;
-    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY:
-    {
+    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY: {
         hr = GetCameraControlCap(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                  KSPROPERTY_VIDEOPROCAMP_POWERLINE_FREQUENCY,
                                  &supportAuto,
@@ -670,8 +660,7 @@ k4a_result_t CMFCameraReader::GetCameraControlCapabilities(const k4a_color_contr
                                  &defaultValue);
     }
     break;
-    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY:
-    {
+    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY: {
         supportAuto = false;
         minValue = 0;
         maxValue = 0;
@@ -719,8 +708,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
 
     switch (command)
     {
-    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE:
-    {
+    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_CAMERACONTROL,
                                    KSPROPERTY_CAMERACONTROL_EXPOSURE,
                                    &propertyValue,
@@ -731,8 +719,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
         propertyValue = MapMfExponentToK4a(propertyValue);
     }
     break;
-    case K4A_COLOR_CONTROL_BRIGHTNESS:
-    {
+    case K4A_COLOR_CONTROL_BRIGHTNESS: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_BRIGHTNESS,
                                    &propertyValue,
@@ -740,8 +727,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_CONTRAST:
-    {
+    case K4A_COLOR_CONTROL_CONTRAST: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_CONTRAST,
                                    &propertyValue,
@@ -749,8 +735,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_SATURATION:
-    {
+    case K4A_COLOR_CONTROL_SATURATION: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_SATURATION,
                                    &propertyValue,
@@ -758,8 +743,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_SHARPNESS:
-    {
+    case K4A_COLOR_CONTROL_SHARPNESS: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_SHARPNESS,
                                    &propertyValue,
@@ -767,8 +751,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_WHITEBALANCE:
-    {
+    case K4A_COLOR_CONTROL_WHITEBALANCE: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_WHITEBALANCE,
                                    &propertyValue,
@@ -776,8 +759,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION:
-    {
+    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_BACKLIGHT_COMPENSATION,
                                    &propertyValue,
@@ -785,8 +767,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_GAIN:
-    {
+    case K4A_COLOR_CONTROL_GAIN: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_GAIN,
                                    &propertyValue,
@@ -794,8 +775,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY:
-    {
+    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY: {
         hr = GetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_POWERLINE_FREQUENCY,
                                    &propertyValue,
@@ -803,8 +783,7 @@ k4a_result_t CMFCameraReader::GetCameraControl(const k4a_color_control_command_t
                                    nullptr);
     }
     break;
-    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY:
-    {
+    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY: {
         propertyValue = 0; // return 0 for current firmware behaviour - framerate priority.
         LOG_WARNING("K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY is deprecated and does nothing.");
     }
@@ -856,8 +835,7 @@ k4a_result_t CMFCameraReader::SetCameraControl(const k4a_color_control_command_t
 
     switch (command)
     {
-    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE:
-    {
+    case K4A_COLOR_CONTROL_EXPOSURE_TIME_ABSOLUTE: {
         // Convert micro-second unit to KSProperty exposure time value
         hr = SetCameraControlValue(PROPSETID_VIDCAP_CAMERACONTROL,
                                    KSPROPERTY_CAMERACONTROL_EXPOSURE,
@@ -865,61 +843,53 @@ k4a_result_t CMFCameraReader::SetCameraControl(const k4a_color_control_command_t
                                    flags);
     }
     break;
-    case K4A_COLOR_CONTROL_BRIGHTNESS:
-    {
+    case K4A_COLOR_CONTROL_BRIGHTNESS: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_BRIGHTNESS,
                                    (LONG)newValue,
                                    flags);
     }
     break;
-    case K4A_COLOR_CONTROL_CONTRAST:
-    {
+    case K4A_COLOR_CONTROL_CONTRAST: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_CONTRAST,
                                    (LONG)newValue,
                                    flags);
     }
     break;
-    case K4A_COLOR_CONTROL_SATURATION:
-    {
+    case K4A_COLOR_CONTROL_SATURATION: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_SATURATION,
                                    (LONG)newValue,
                                    flags);
     }
     break;
-    case K4A_COLOR_CONTROL_SHARPNESS:
-    {
+    case K4A_COLOR_CONTROL_SHARPNESS: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_SHARPNESS,
                                    (LONG)newValue,
                                    flags);
     }
     break;
-    case K4A_COLOR_CONTROL_WHITEBALANCE:
-    {
+    case K4A_COLOR_CONTROL_WHITEBALANCE: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_WHITEBALANCE,
                                    (LONG)newValue,
                                    flags);
     }
     break;
-    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION:
-    {
+    case K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_BACKLIGHT_COMPENSATION,
                                    (LONG)newValue,
                                    flags);
     }
     break;
-    case K4A_COLOR_CONTROL_GAIN:
-    {
+    case K4A_COLOR_CONTROL_GAIN: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP, KSPROPERTY_VIDEOPROCAMP_GAIN, (LONG)newValue, flags);
     }
     break;
-    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY:
-    {
+    case K4A_COLOR_CONTROL_POWERLINE_FREQUENCY: {
         hr = SetCameraControlValue(PROPSETID_VIDCAP_VIDEOPROCAMP,
                                    KSPROPERTY_VIDEOPROCAMP_POWERLINE_FREQUENCY,
                                    (LONG)newValue,
@@ -931,8 +901,7 @@ k4a_result_t CMFCameraReader::SetCameraControl(const k4a_color_control_command_t
         }
     }
     break;
-    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY:
-    {
+    case K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY: {
         LOG_WARNING("K4A_COLOR_CONTROL_AUTO_EXPOSURE_PRIORITY is deprecated and does nothing.");
     }
     break;

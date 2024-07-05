@@ -34,7 +34,7 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 endif()
 
 target_link_libraries(dynlib_ut PRIVATE
-    gtest::gtest
+    gtest
     k4ainternal::dynlib
     k4ainternal::utcommon)
 

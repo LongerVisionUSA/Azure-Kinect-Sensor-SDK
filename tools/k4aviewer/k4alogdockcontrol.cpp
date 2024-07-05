@@ -161,7 +161,7 @@ K4ADockControlStatus K4ALogDockControl::Show()
 
     if (updated)
     {
-        ImGui::SetScrollHere(1.0f);
+        ImGui::SetScrollHereY(1.0f);
     }
 
     ImGui::EndChild();

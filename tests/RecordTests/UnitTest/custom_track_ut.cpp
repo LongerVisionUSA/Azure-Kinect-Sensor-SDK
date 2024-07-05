@@ -90,10 +90,9 @@ TEST_F(custom_track_ut, list_available_tracks)
 
     // Loop through all tracks and validate the name and codec id
     static const char *track_names[] = { "CUSTOM_TRACK", "CUSTOM_TRACK_HIGH_FREQ", "DEPTH", "IR" };
-    static const char *track_codecs[] = { "S_K4A/CUSTOM_TRACK",
-                                          "S_K4A/CUSTOM_TRACK",
-                                          "V_MS/VFW/FOURCC",
-                                          "V_MS/VFW/FOURCC" };
+    static const char *track_codecs[] = {
+        "S_K4A/CUSTOM_TRACK", "S_K4A/CUSTOM_TRACK", "V_MS/VFW/FOURCC", "V_MS/VFW/FOURCC"
+    };
     static const bool track_builtin[] = { false, false, true, true };
     size_t track_count = k4a_playback_get_track_count(handle);
 

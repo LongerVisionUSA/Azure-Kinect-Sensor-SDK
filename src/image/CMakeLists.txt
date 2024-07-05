@@ -11,7 +11,7 @@ target_include_directories(k4a_image PUBLIC
 
 # Dependencies of this library
 target_link_libraries(k4a_image PUBLIC 
-    azure::aziotsharedutil
+    aziotsharedutil
     k4ainternal::allocator
     k4ainternal::logging)
 

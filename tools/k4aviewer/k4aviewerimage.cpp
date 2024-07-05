@@ -43,8 +43,7 @@ GLuint GetFormatPixelElementCount(GLenum format)
 } // namespace
 
 K4AViewerImage::K4AViewerImage(const ImageDimensions dimensions, const GLenum format) :
-    m_dimensions(dimensions),
-    m_format(format)
+    m_dimensions(dimensions), m_format(format)
 {
     m_textureBufferSize = static_cast<GLuint>(dimensions.Width * dimensions.Height) *
                           GetFormatPixelElementCount(format);

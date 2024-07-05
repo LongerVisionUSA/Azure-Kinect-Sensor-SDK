@@ -116,16 +116,14 @@ static k4a_result_t transformation_create_depth_camera_pinhole(const k4a_calibra
     switch (calibration->depth_mode)
     {
     case K4A_DEPTH_MODE_NFOV_2X2BINNED:
-    case K4A_DEPTH_MODE_NFOV_UNBINNED:
-    {
+    case K4A_DEPTH_MODE_NFOV_UNBINNED: {
         fov_degrees[0] = 75;
         fov_degrees[1] = 65;
         break;
     }
     case K4A_DEPTH_MODE_WFOV_2X2BINNED:
     case K4A_DEPTH_MODE_WFOV_UNBINNED:
-    case K4A_DEPTH_MODE_PASSIVE_IR:
-    {
+    case K4A_DEPTH_MODE_PASSIVE_IR: {
         fov_degrees[0] = 120;
         fov_degrees[1] = 120;
         break;

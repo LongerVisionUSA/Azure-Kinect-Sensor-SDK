@@ -9,6 +9,10 @@
 #include <k4a/k4a.h>
 #include <k4ainternal/common.h>
 #include <k4ainternal/logging.h>
+#ifndef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200809L
+#endif
+#include <strings.h>
 #include <gtest/gtest.h>
 #include <utcommon.h>
 
@@ -696,7 +700,7 @@ TEST_P(latency_perf, testTest)
                       &ir_system_ts_from_pts_last);
 
         printf("|\n"); // End of line
-    }                  // End capture loop
+    } // End capture loop
 
     thread.exit = true; // shut down IMU thread
     k4a_device_stop_cameras(m_device);

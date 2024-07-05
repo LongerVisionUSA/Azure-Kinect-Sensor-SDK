@@ -1,15 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+#define _GNU_SOURCE
 // This library
 #include <k4ainternal/calibration.h>
 
 // Dependent libraries
 #include <k4ainternal/common.h>
-#include <cJSON.h>
+#include <cjson/cJSON.h>
 #include <locale.h> //cJSON.h need this set correctly.
 
 // System dependencies
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
@@ -25,11 +27,12 @@ typedef struct _INTRINSIC_TYPE_TO_STRING_MAPPER
     char *type_s;
 } intrinsic_type_to_string_mapper_t;
 
-static intrinsic_type_to_string_mapper_t intrinsic_type_mapper[] =
-    { { K4A_CALIBRATION_LENS_DISTORTION_MODEL_THETA, "CALIBRATION_LensDistortionModelTheta" },
-      { K4A_CALIBRATION_LENS_DISTORTION_MODEL_POLYNOMIAL_3K, "CALIBRATION_LensDistortionModelPolynomial3K" },
-      { K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT, "CALIBRATION_LensDistortionModelRational6KT" },
-      { K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY, "CALIBRATION_LensDistortionModelBrownConrady" } };
+static intrinsic_type_to_string_mapper_t intrinsic_type_mapper[] = {
+    { K4A_CALIBRATION_LENS_DISTORTION_MODEL_THETA, "CALIBRATION_LensDistortionModelTheta" },
+    { K4A_CALIBRATION_LENS_DISTORTION_MODEL_POLYNOMIAL_3K, "CALIBRATION_LensDistortionModelPolynomial3K" },
+    { K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT, "CALIBRATION_LensDistortionModelRational6KT" },
+    { K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY, "CALIBRATION_LensDistortionModelBrownConrady" }
+};
 
 typedef struct _calibration_context_t
 {

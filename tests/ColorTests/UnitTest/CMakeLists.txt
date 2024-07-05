@@ -41,8 +41,8 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         cfgmgr32.lib)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     target_link_libraries(color_ut PRIVATE
-        libuvc::libuvc
-        libjpeg-turbo::libjpeg-turbo)
+        uvc
+        turbojpeg)
 endif()
 
 k4a_add_tests(TARGET color_ut TEST_TYPE UNIT)

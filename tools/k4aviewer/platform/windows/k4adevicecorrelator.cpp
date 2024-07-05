@@ -68,10 +68,10 @@ struct GuidComparer
 {
     bool operator()(const GUID &a, const GUID &b) const
     {
-        return a.Data1 != b.Data1 ?
-                   a.Data1 < b.Data1 :
-                   a.Data2 != b.Data2 ? a.Data2 < b.Data2 :
-                                        a.Data3 != b.Data3 ? a.Data3 < b.Data3 : memcmp(a.Data4, b.Data4, 8) < 0;
+        return a.Data1 != b.Data1 ? a.Data1 < b.Data1 :
+               a.Data2 != b.Data2 ? a.Data2 < b.Data2 :
+               a.Data3 != b.Data3 ? a.Data3 < b.Data3 :
+                                    memcmp(a.Data4, b.Data4, 8) < 0;
     }
 };
 

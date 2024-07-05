@@ -4,8 +4,8 @@
 add_library(utcommon STATIC utcommon.cpp)
 
 target_link_libraries(utcommon PUBLIC 
-    gtest::gtest
-    gtest::gmock
+    gtest
+    gmock
     k4ainternal::logging
 )
 

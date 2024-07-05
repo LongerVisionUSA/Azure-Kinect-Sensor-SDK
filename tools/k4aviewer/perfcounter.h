@@ -13,6 +13,7 @@
 #include <mutex>
 #include <numeric>
 #include <ratio>
+#include <string>
 
 // Library headers
 //
@@ -46,8 +47,7 @@ private:
 struct PerfSample
 {
     inline PerfSample(PerfCounter *counter) :
-        m_counter(counter),
-        m_currentSampleStart(std::chrono::high_resolution_clock::now())
+        m_counter(counter), m_currentSampleStart(std::chrono::high_resolution_clock::now())
     {
     }
 

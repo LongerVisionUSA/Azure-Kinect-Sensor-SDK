@@ -199,18 +199,19 @@ create_test_image(uint64_t timestamp_us, k4a_image_format_t format, uint32_t wid
     }
 
     k4a_image_t image = NULL;
-    k4a_result_t result = k4a_image_create_from_buffer(format,
-                                                       (int)width,
-                                                       (int)height,
-                                                       (int)stride,
-                                                       buffer,
-                                                       buffer_size,
-                                                       [](void *_buffer, void *context) {
-                                                           delete[](uint8_t *) _buffer;
-                                                           (void)context;
-                                                       },
-                                                       NULL,
-                                                       &image);
+    k4a_result_t result = k4a_image_create_from_buffer(
+        format,
+        (int)width,
+        (int)height,
+        (int)stride,
+        buffer,
+        buffer_size,
+        [](void *_buffer, void *context) {
+            delete[] (uint8_t *)_buffer;
+            (void)context;
+        },
+        NULL,
+        &image);
     EXIT_IF_FALSE(result == K4A_RESULT_SUCCEEDED);
 
     k4a_image_set_device_timestamp_usec(image, timestamp_us);

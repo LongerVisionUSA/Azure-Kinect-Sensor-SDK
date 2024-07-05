@@ -177,15 +177,13 @@ k4a_result_t image_create(k4a_image_format_t format,
 
     switch (format)
     {
-    case K4A_IMAGE_FORMAT_COLOR_MJPG:
-    {
+    case K4A_IMAGE_FORMAT_COLOR_MJPG: {
         LOG_ERROR("K4A_IMAGE_FORMAT_COLOR_MJPG does not have a constant stride. Buffer size cannot be calculated.", 0);
         result = K4A_RESULT_FAILED;
         break;
     }
 
-    case K4A_IMAGE_FORMAT_COLOR_NV12:
-    {
+    case K4A_IMAGE_FORMAT_COLOR_NV12: {
         if (stride_bytes == 0)
         {
             // If stride isn't specified, assume the minimum stride
@@ -219,8 +217,7 @@ k4a_result_t image_create(k4a_image_format_t format,
     }
 
     // 1 Byte per pixel
-    case K4A_IMAGE_FORMAT_CUSTOM8:
-    {
+    case K4A_IMAGE_FORMAT_CUSTOM8: {
         if (stride_bytes == 0)
         {
             // If stride isn't specified, assume the minimum stride
@@ -245,8 +242,7 @@ k4a_result_t image_create(k4a_image_format_t format,
     // 2 Bytes per pixel
     case K4A_IMAGE_FORMAT_DEPTH16:
     case K4A_IMAGE_FORMAT_IR16:
-    case K4A_IMAGE_FORMAT_CUSTOM16:
-    {
+    case K4A_IMAGE_FORMAT_CUSTOM16: {
         if (stride_bytes == 0)
         {
             // If stride isn't specified, assume the minimum stride
@@ -269,8 +265,7 @@ k4a_result_t image_create(k4a_image_format_t format,
     }
 
     // 2 Bytes per pixel
-    case K4A_IMAGE_FORMAT_COLOR_YUY2:
-    {
+    case K4A_IMAGE_FORMAT_COLOR_YUY2: {
         if (stride_bytes == 0)
         {
             // If stride isn't specified, assume the minimum stride
@@ -298,8 +293,7 @@ k4a_result_t image_create(k4a_image_format_t format,
     }
 
     // 4 Bytes per pixel
-    case K4A_IMAGE_FORMAT_COLOR_BGRA32:
-    {
+    case K4A_IMAGE_FORMAT_COLOR_BGRA32: {
         if (stride_bytes == 0)
         {
             // If stride isn't specified, assume the minimum stride
@@ -323,8 +317,7 @@ k4a_result_t image_create(k4a_image_format_t format,
 
     // Unknown
     case K4A_IMAGE_FORMAT_CUSTOM:
-    default:
-    {
+    default: {
         size = (size_t)height_pixels * (size_t)stride_bytes;
         result = K4A_RESULT_SUCCEEDED;
         break;

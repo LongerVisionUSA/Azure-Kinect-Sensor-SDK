@@ -12,36 +12,24 @@ function(determine_target_arch OUTPUT_VARIABLE)
             message(FATAL_ERROR "Unrecognized architecture ${MSVC_C_ARCHITECTURE_ID} from ${CMAKE_C_COMPILER}")
         endif()
     elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
-        if("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
-            set(CMD_ARGS "-target" "${CMAKE_C_COMPILER_TARGET}" "-dumpmachine")
-        else()
-            set(CMD_ARGS "-dumpmachine")
-        endif()
         execute_process(
-            COMMAND 
-                ${CMAKE_C_COMPILER} ${CMD_ARGS}
-            RESULT_VARIABLE
-                RESULT
-            OUTPUT_VARIABLE
-                ARCH
-            ERROR_QUIET)
+            COMMAND ${CMAKE_C_COMPILER} -dumpmachine
+            RESULT_VARIABLE RESULT
+            OUTPUT_VARIABLE ARCH
+            ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
         if(RESULT)
             message(FATAL_ERROR "Failed to determine target architecture triplet: ${RESULT}")
         endif()
-        string(REGEX MATCH "([^-]+).*" ARCH_MATCH ${ARCH})
-        if(NOT CMAKE_MATCH_1 OR NOT ARCH_MATCH)
+        string(REGEX MATCH "([^-]+)" ARCH_MATCH ${ARCH})
+        if(NOT ARCH_MATCH)
             message(FATAL_ERROR "Failed to match the target architecture triplet: ${ARCH}")
         endif()
         set(ARCH ${CMAKE_MATCH_1})
 
-        if("${ARCH}" STREQUAL "x86_64")
-            # Do nothing
+        if("${ARCH}" STREQUAL "x86_64" OR "${ARCH}" STREQUAL "i686" OR "${ARCH}" STREQUAL "i386")
+            # Do nothing, recognized architectures
         elseif("${ARCH}" STREQUAL "aarch64")
             set(ARCH "arm64")
-        elseif("${ARCH}" STREQUAL "i686")
-            # Do nothing
-        elseif("${ARCH}" STREQUAL "i386")
-            # Do nothing
         else()
             message(FATAL_ERROR "Unrecognized architecture ${ARCH} from ${CMAKE_C_COMPILER}")
         endif()

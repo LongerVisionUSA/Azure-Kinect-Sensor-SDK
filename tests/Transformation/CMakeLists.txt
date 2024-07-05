@@ -4,8 +4,8 @@
 add_executable(transformation_ut transformation.cpp)
 
 target_link_libraries(transformation_ut PRIVATE
-    azure::aziotsharedutil
-    gtest::gtest
+    aziotsharedutil
+    gtest
     k4ainternal::image
     k4ainternal::transformation
     k4ainternal::utcommon

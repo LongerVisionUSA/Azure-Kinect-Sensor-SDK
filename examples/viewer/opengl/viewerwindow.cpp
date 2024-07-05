@@ -22,7 +22,7 @@ void APIENTRY glDebugOutput(GLenum source,
                             GLenum severity,
                             GLsizei length,
                             const GLchar *message,
-                            void *userParam)
+                            const void *userParam)
 {
     (void)userParam;
 

@@ -6,9 +6,9 @@
 # Invokes clang-format and reports formatting errors
 # Optionally can cause clang-format to run the format in place with --reformat
 
-import re, argparse, sys, subprocess, os.path, xml.dom.minidom
+import re, argparse, sys, subprocess, os.path, xml.dom.minidom, os
 
-parser=argparse.ArgumentParser(description='Validate clang-fromat for files')
+parser=argparse.ArgumentParser(description='Validate clang-format for files')
 parser.add_argument('--file', metavar='INPUTFILE', type=str, nargs='+', help='Files to validate', required=True)
 parser.add_argument('--output', metavar='OUTPUT', type=str, help='Output location', required=True)
 parser.add_argument('--clangformat', type=str, help='path to the clang-format tool', required=True)
@@ -85,7 +85,7 @@ def main(argv):
                     linewitherrors = lineno
                     replacementsonline = replacementsonline + 1
 
-            # Print the last line of replacment information if any
+            # Print the last line of replacement information if any
             if linewitherrors != 0:
                 err = "Error {} ({}): {} clang-format replacements on line".format(
                     file, 
@@ -96,6 +96,10 @@ def main(argv):
                 print("     Run the clangformat target to auto-clean (e.g. \"ninja clangformat\")")
 
             errorcount = errorcount + reformatcount
+    # Ensure the directory exists for the output file
+    output_dir = os.path.dirname(args.output)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     # Touch the output file if the operation was successful
     if errorcount == 0:

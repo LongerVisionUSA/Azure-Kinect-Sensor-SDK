@@ -83,10 +83,13 @@ used with CPP and destroy being used with C, or vise-vesa, the types get c or cp
     /* Define "void handle_t_destroy(handle_t handle) function */                                                      \
     static inline void _public_handle_name_##_destroy(_public_handle_name_ handle)                                     \
     {                                                                                                                  \
-        (void)_public_handle_name_##_get_context(handle);                                                              \
-        IF_LOGGER(LOG_TRACE("Destroyed " #_public_handle_name_ " %p", handle);)                                        \
-        ((PUB_HANDLE_TYPE(_public_handle_name_) *)handle)->handleType = NULL;                                          \
-        DESTROY((PUB_HANDLE_TYPE(_public_handle_name_) *)handle);                                                      \
+        if (handle != NULL)                                                                                            \
+        {                                                                                                              \
+            IF_LOGGER(LOG_TRACE("Destroyed " #_public_handle_name_ " %p", handle);)                                    \
+            ((PUB_HANDLE_TYPE(_public_handle_name_) *)handle)->handleType = NULL;                                      \
+            DESTROY((PUB_HANDLE_TYPE(_public_handle_name_) *)handle);                                                  \
+            handle = NULL;                                                                                             \
+        }                                                                                                              \
     }
 
 /*

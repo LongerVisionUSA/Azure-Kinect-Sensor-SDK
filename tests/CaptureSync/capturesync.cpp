@@ -28,10 +28,7 @@
 #define COLOR_CAPTURE (true)
 #define DEPTH_CAPTURE (false)
 
-#define END_TEST_DATA                                                                                                  \
-    {                                                                                                                  \
-        UINT64_MAX, COLOR_CAPTURE, NO_CAPTURE, NO_CAPTURE                                                              \
-    }
+#define END_TEST_DATA { UINT64_MAX, COLOR_CAPTURE, NO_CAPTURE, NO_CAPTURE }
 
 int main(int argc, char **argv)
 {

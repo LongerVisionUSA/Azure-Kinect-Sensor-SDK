@@ -175,18 +175,19 @@ TEST_F(record_ut, DISABLED_bgra_color_max_disk_write)
         memset(buffer, 0xFF, height * stride);
 
         k4a_image_t color_image = NULL;
-        result = k4a_image_create_from_buffer(record_config.color_format,
-                                              (int)width,
-                                              (int)height,
-                                              (int)stride,
-                                              buffer,
-                                              buffer_size,
-                                              [](void *_buffer, void *ctx) {
-                                                  delete[](uint8_t *) _buffer;
-                                                  (void)ctx;
-                                              },
-                                              NULL,
-                                              &color_image);
+        result = k4a_image_create_from_buffer(
+            record_config.color_format,
+            (int)width,
+            (int)height,
+            (int)stride,
+            buffer,
+            buffer_size,
+            [](void *_buffer, void *ctx) {
+                delete[] (uint8_t *)_buffer;
+                (void)ctx;
+            },
+            NULL,
+            &color_image);
         ASSERT_EQ(result, K4A_RESULT_SUCCEEDED);
 
         k4a_image_set_device_timestamp_usec(color_image, timestamp_ns / 1000);

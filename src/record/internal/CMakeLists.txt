@@ -22,17 +22,17 @@ target_include_directories(k4a_playback PUBLIC
 target_link_libraries(k4a_record PUBLIC 
     k4a::k4a
     k4ainternal::logging
-    ebml::ebml
-    matroska::matroska
+    ebml
+    matroska
 )
 
 target_link_libraries(k4a_playback PUBLIC 
     k4a::k4a
     k4ainternal::logging
-    ebml::ebml
-    matroska::matroska
-    libyuv::libyuv
-    libjpeg-turbo::libjpeg-turbo
+    ebml
+    matroska
+    yuv
+    turbojpeg
 )
 
 # Define alias for other targets to link against

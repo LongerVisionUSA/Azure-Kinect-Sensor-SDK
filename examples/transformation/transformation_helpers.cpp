@@ -111,22 +111,22 @@ k4a_image_t downscale_image_2x2_binning(const k4a_image_t color_image)
             int index_bl = (j * 2 + 1) * color_image_width_pixels + i * 2 + 0;
             int index_br = (j * 2 + 1) * color_image_width_pixels + i * 2 + 1;
 
-            color_image_downscaled_data[4 * index_downscaled + 0] = (uint8_t)(
-                (color_image_data[4 * index_tl + 0] + color_image_data[4 * index_tr + 0] +
-                 color_image_data[4 * index_bl + 0] + color_image_data[4 * index_br + 0]) /
-                4.0f);
-            color_image_downscaled_data[4 * index_downscaled + 1] = (uint8_t)(
-                (color_image_data[4 * index_tl + 1] + color_image_data[4 * index_tr + 1] +
-                 color_image_data[4 * index_bl + 1] + color_image_data[4 * index_br + 1]) /
-                4.0f);
-            color_image_downscaled_data[4 * index_downscaled + 2] = (uint8_t)(
-                (color_image_data[4 * index_tl + 2] + color_image_data[4 * index_tr + 2] +
-                 color_image_data[4 * index_bl + 2] + color_image_data[4 * index_br + 2]) /
-                4.0f);
-            color_image_downscaled_data[4 * index_downscaled + 3] = (uint8_t)(
-                (color_image_data[4 * index_tl + 3] + color_image_data[4 * index_tr + 3] +
-                 color_image_data[4 * index_bl + 3] + color_image_data[4 * index_br + 3]) /
-                4.0f);
+            color_image_downscaled_data[4 * index_downscaled + 0] =
+                (uint8_t)((color_image_data[4 * index_tl + 0] + color_image_data[4 * index_tr + 0] +
+                           color_image_data[4 * index_bl + 0] + color_image_data[4 * index_br + 0]) /
+                          4.0f);
+            color_image_downscaled_data[4 * index_downscaled + 1] =
+                (uint8_t)((color_image_data[4 * index_tl + 1] + color_image_data[4 * index_tr + 1] +
+                           color_image_data[4 * index_bl + 1] + color_image_data[4 * index_br + 1]) /
+                          4.0f);
+            color_image_downscaled_data[4 * index_downscaled + 2] =
+                (uint8_t)((color_image_data[4 * index_tl + 2] + color_image_data[4 * index_tr + 2] +
+                           color_image_data[4 * index_bl + 2] + color_image_data[4 * index_br + 2]) /
+                          4.0f);
+            color_image_downscaled_data[4 * index_downscaled + 3] =
+                (uint8_t)((color_image_data[4 * index_tl + 3] + color_image_data[4 * index_tr + 3] +
+                           color_image_data[4 * index_bl + 3] + color_image_data[4 * index_br + 3]) /
+                          4.0f);
         }
     }
 

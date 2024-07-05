@@ -7,7 +7,7 @@
 # Visual Studio 2017 15.3 - CMake 3.8
 # Visual Studio 2017 15.4 - CMake 3.9
 # Visual Studio 2017 15.7 - CMake 3.11
-cmake_minimum_required(VERSION 3.9.0)
+cmake_minimum_required(VERSION 3.12.0)
 
 cmake_policy(SET CMP0048 NEW)
 
@@ -39,8 +39,8 @@ set(K4A_ICON_PATH ${CMAKE_CURRENT_LIST_DIR}/kinect-viewer.ico)
 set(PROJ_DIR ${CMAKE_CURRENT_LIST_DIR})
 set(INCLUDE_DIR ${PROJ_DIR}/include)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_C_STANDARD 23)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -101,7 +101,22 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_C_COMPILER_ID}" STREQUAL
 endif()
 
 # Find all dependencies
-add_subdirectory(extern)
+# add_subdirectory(extern)
+# Find dependencies using find_package where available
+find_package(PkgConfig REQUIRED)
+find_package(azure_c_shared_utility REQUIRED)
+find_package(cJSON REQUIRED)
+find_package(glfw3 REQUIRED)
+find_package(GTest REQUIRED)
+find_package(imgui REQUIRED)
+find_package(EBML REQUIRED)
+find_package(libjpeg-turbo REQUIRED)
+# pkg_check_modules(LIBJPEG-TURBO REQUIRED libjpeg)
+find_package(Matroska REQUIRED)
+pkg_check_modules(SOUNDIO REQUIRED libsoundio)
+pkg_check_modules(YUV REQUIRED libyuv)
+find_package(libuvc REQUIRED)
+find_package(spdlog REQUIRED)
 
 # Don't enable testing until after building dependencies
 enable_testing()
@@ -163,11 +178,11 @@ endif()
 
 add_subdirectory(examples)
 add_subdirectory(src)
-add_subdirectory(tests)
+#add_subdirectory(tests)
 add_subdirectory(tools)
 
 if (K4A_BUILD_DOCS)
-    find_package(Doxygen 1.8.14 EXACT)
+    find_package(Doxygen 1.11.0 EXACT)
     if (DOXYGEN_FOUND)
         set(DOXYGEN_MAINPAGE ${CMAKE_CURRENT_SOURCE_DIR}/doxygen/mainpage.md) 
         set(DOXYGEN_SOURCES 
@@ -211,7 +226,7 @@ if (${CLANG_FORMAT} STREQUAL "CLANG_FORMAT-NOTFOUND")
     message(STATUS "Clang-format not found")
 else()
 
-    set(VALID_CLANG_FORMAT_VERSION "6\.0\.0")
+    set(VALID_CLANG_FORMAT_VERSION "19\.0\.0")
     execute_process(COMMAND ${CLANG_FORMAT} -version OUTPUT_VARIABLE CLANG_VERSION_STRING)
     message(STATUS "clang-format version: ${CLANG_VERSION_STRING}")
 

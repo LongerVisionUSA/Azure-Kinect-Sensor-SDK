@@ -6,7 +6,7 @@
 #include <cmath>
 
 #ifdef _MSC_VER
-//#define inline __inline
+// #define inline __inline
 #endif
 
 // clang-format off

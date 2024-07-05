@@ -196,7 +196,10 @@ static int _throughput_imu_thread(void *param)
         {
             if (data->enable_counting == true)
             {
-                data->imu_samples++;
+                // Use a temporary variable to increment the volatile variable
+                auto temp = data->imu_samples;
+                temp++;
+                data->imu_samples = temp;
 
                 EXPECT_LT(acc_ts, imu.acc_timestamp_usec);
                 EXPECT_LT(gyro_ts, imu.gyro_timestamp_usec);

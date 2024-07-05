@@ -4,8 +4,8 @@
 add_executable(multidevice_ft multidevice.cpp)
 
 target_link_libraries(multidevice_ft PRIVATE
-    azure::aziotsharedutil
-    gtest::gtest
+    aziotsharedutil
+    gtest
     k4a::k4a
     k4ainternal::utcommon)
 

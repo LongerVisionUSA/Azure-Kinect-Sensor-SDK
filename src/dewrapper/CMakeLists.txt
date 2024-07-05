@@ -10,7 +10,7 @@ target_include_directories(k4a_dewrapper PUBLIC
     ${K4A_PRIV_INCLUDE_DIR})
 
 target_link_libraries(k4a_dewrapper PUBLIC
-    azure::aziotsharedutil
+    aziotsharedutil
     k4ainternal::allocator
     k4ainternal::calibration
     k4ainternal::logging

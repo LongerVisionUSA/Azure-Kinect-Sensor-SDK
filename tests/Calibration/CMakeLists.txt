@@ -4,8 +4,8 @@
 add_executable(calibration_ut calibration.cpp)
 
 target_link_libraries(calibration_ut PRIVATE
-    azure::aziotsharedutil
-    gtest::gtest
+    aziotsharedutil
+    gtest
     k4ainternal::calibration
     k4ainternal::utcommon)
 

@@ -164,16 +164,17 @@ void K4AImuGraph::PlotGraph(const char *name,
     selectorData.data = &graphData[0];
     selectorData.offset = offset;
 
-    ImGui::PlotLines(nameBuilder.str().c_str(),
-                     [](void *data, int idx) {
-                         auto *sd = reinterpret_cast<SelectorData *>(data);
-                         return sd->data[idx].v[sd->offset];
-                     },
-                     &selectorData,
-                     static_cast<int>(graphData.size()),
-                     graphFrontIdx,
-                     label.c_str(),
-                     m_currentRange,
-                     -m_currentRange,
-                     graphSize);
+    ImGui::PlotLines(
+        nameBuilder.str().c_str(),
+        [](void *data, int idx) {
+            auto *sd = reinterpret_cast<SelectorData *>(data);
+            return sd->data[idx].v[sd->offset];
+        },
+        &selectorData,
+        static_cast<int>(graphData.size()),
+        graphFrontIdx,
+        label.c_str(),
+        m_currentRange,
+        -m_currentRange,
+        graphSize);
 }

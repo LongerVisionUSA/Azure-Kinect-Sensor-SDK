@@ -11,7 +11,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         cfgmgr32.lib)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(K4A_COLOR_SYSTEM_SOURCES uvc_camerareader.cpp)
-    set(K4A_COLOR_SYSTEM_DEPENDENCIES libuvc::libuvc libjpeg-turbo::libjpeg-turbo)
+    set(K4A_COLOR_SYSTEM_DEPENDENCIES uvc turbojpeg)
 endif()
 
 add_library(k4a_color STATIC

@@ -40,10 +40,7 @@ private:
     {
         LogEntry() = default;
         LogEntry(k4a_log_level_t severity, const char *file, int line, const char *msg) :
-            Severity(severity),
-            File(file),
-            Line(line),
-            Msg(msg)
+            Severity(severity), File(file), Line(line), Msg(msg)
         {
         }
 

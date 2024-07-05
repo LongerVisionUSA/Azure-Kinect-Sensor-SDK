@@ -4,8 +4,8 @@
 add_executable(allocator_ut allocator.cpp)
 
 target_link_libraries(allocator_ut PRIVATE
-    azure::aziotsharedutil
-    gtest::gtest
+    aziotsharedutil
+    gtest
     k4ainternal::allocator
     k4ainternal::image
     k4ainternal::utcommon)

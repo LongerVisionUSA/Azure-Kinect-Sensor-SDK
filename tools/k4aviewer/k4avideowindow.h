@@ -28,8 +28,7 @@ template<k4a_image_format_t ImageFormat> class K4AVideoWindow : public IK4AVisua
 {
 public:
     K4AVideoWindow(std::string &&title, std::shared_ptr<K4AConvertingImageSource<ImageFormat>> imageSource) :
-        m_imageSource(std::move(imageSource)),
-        m_title(std::move(title))
+        m_imageSource(std::move(imageSource)), m_title(std::move(title))
     {
         const GLenum initResult = m_imageSource->InitializeTexture(&m_currentTexture);
         const ImageConversionResult ivr = GLEnumToImageConversionResult(initResult);

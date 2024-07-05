@@ -30,8 +30,8 @@ typedef struct _guid_t
 #define STRINGIFY(string) #string
 
 // Clock tick runs 90kHz and convert sec to micro sec
-#define K4A_90K_HZ_TICK_TO_USEC(x) ((uint64_t)(x)*100 / 9)
-#define K4A_USEC_TO_90K_HZ_TICK(x) ((x)*9 / 100)
+#define K4A_90K_HZ_TICK_TO_USEC(x) ((uint64_t)(x) * 100 / 9)
+#define K4A_USEC_TO_90K_HZ_TICK(x) ((x) * 9 / 100)
 
 #define MAX_SERIAL_NUMBER_LENGTH                                                                                       \
     (13 * 2) // Current schema is for 12 digits plus NULL, the extra size is in case that grows in the future.

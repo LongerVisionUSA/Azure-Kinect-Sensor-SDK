@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+#ifndef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200809L
+#endif
+#include <strings.h>
 #include <utcommon.h>
 #include <ut_calibration_data.h>
 
@@ -71,18 +75,9 @@ protected:
         }                                                                                                              \
     }
 
-#define ASSERT_EQ_FLT2(A, B)                                                                                           \
-    {                                                                                                                  \
-        ASSERT_EQ_FLT(A[0], B[0])                                                                                      \
-        ASSERT_EQ_FLT(A[1], B[1])                                                                                      \
-    }
+#define ASSERT_EQ_FLT2(A, B) { ASSERT_EQ_FLT(A[0], B[0]) ASSERT_EQ_FLT(A[1], B[1]) }
 
-#define ASSERT_EQ_FLT3(A, B)                                                                                           \
-    {                                                                                                                  \
-        ASSERT_EQ_FLT(A[0], B[0])                                                                                      \
-        ASSERT_EQ_FLT(A[1], B[1])                                                                                      \
-        ASSERT_EQ_FLT(A[2], B[2])                                                                                      \
-    }
+#define ASSERT_EQ_FLT3(A, B) { ASSERT_EQ_FLT(A[0], B[0]) ASSERT_EQ_FLT(A[1], B[1]) ASSERT_EQ_FLT(A[2], B[2]) }
 
 // Export function from transformation.c to snoop on the compiler setting used.
 extern "C" char *transformation_get_instruction_type();
@@ -416,7 +411,7 @@ TEST_F(transformation_ut, transformation_depth_image_to_point_cloud)
 #define SPECIAL_INSTRUCTION_OPTIMIZATION "NEON"
 #else
 // Omit defining this when not SSE or NEON. Should result in a build break. We are either SSE or Neon.
-//#define SPECIAL_INSTRUCTION_OPTIMIZATION "None"
+// #define SPECIAL_INSTRUCTION_OPTIMIZATION "None"
 #endif
         char *compile_type = transformation_get_instruction_type();
         ASSERT_NE(compile_type, (char *)nullptr);

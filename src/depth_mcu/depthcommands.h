@@ -21,7 +21,7 @@ extern "C" {
 #define SENSOR_MODE_MEGA_PIXEL 5
 #define SENSOR_MODE_QUARTER_MEGA_PIXEL 7
 
-#define ROUND_UP(a, round) (((a) + ((round)-1)) & ~((round)-1))
+#define ROUND_UP(a, round) (((a) + ((round) - 1)) & ~((round) - 1))
 
 #define SENSOR_MODE_LONG_THROW_NATIVE_SIZE (5310760)  // K4A_DEPTH_MODE_NFOV_2X2BINNED & K4A_DEPTH_MODE_NFOV_UNBINNED
 #define SENSOR_MODE_PSEUDO_COMMON_SIZE (1678024)      // K4A_DEPTH_MODE_PASSIVE_IR

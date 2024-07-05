@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
 
 // External dependencies
 
@@ -27,6 +28,9 @@
 #ifdef _MSC_VER
 #pragma warning(default : 4702)
 #endif
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_sinks.h>
+#include <spdlog/sinks/rotating_file_sink.h>
 
 #ifdef __cplusplus
 extern "C" {

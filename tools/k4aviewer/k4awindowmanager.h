@@ -55,8 +55,7 @@ private:
         WindowListEntry() : IsWindowGroup(true) {}
 
         WindowListEntry(std::unique_ptr<IK4AVisualizationWindow> &&window) :
-            IsWindowGroup(false),
-            Window(std::move(window))
+            IsWindowGroup(false), Window(std::move(window))
         {
         }
 

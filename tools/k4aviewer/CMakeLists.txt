@@ -57,12 +57,14 @@ include_directories(
 set(EXTERNAL_LIBRARIES
     k4a::k4a
     k4a::k4arecord
-    imgui::imgui
-    libjpeg-turbo::libjpeg-turbo
-    libsoundio::libsoundio
-    LibUSB::LibUSB
-    libyuv::libyuv
-    glfw::glfw
+    imgui
+    imgui_backends
+    turbojpeg
+    soundio
+    usb
+    yuv
+    glfw
+    gl3w
     ${OPENGL_LIBRARIES}
 )
 

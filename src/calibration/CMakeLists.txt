@@ -11,7 +11,9 @@ target_include_directories(k4a_calibration PUBLIC
 
 # Dependencies of this library
 target_link_libraries(k4a_calibration PUBLIC 
-    cJSON::cJSON
+    # cJSON::cJSON
+    cjson
+    cjson_utils
     k4ainternal::logging)
 
 # Define alias for other targets to link against

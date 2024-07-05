@@ -7,6 +7,7 @@
 // System headers
 //
 #include <array>
+#include <string>
 
 // Library headers
 //
@@ -56,10 +57,7 @@ private:
         float Min;
 
         DataPoint(const float max, const float positiveRms, const float negativeRms, const float min) :
-            Max(max),
-            PositiveRms(positiveRms),
-            NegativeRms(negativeRms),
-            Min(min)
+            Max(max), PositiveRms(positiveRms), NegativeRms(negativeRms), Min(min)
         {
         }
 

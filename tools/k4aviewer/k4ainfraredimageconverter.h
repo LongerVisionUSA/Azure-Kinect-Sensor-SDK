@@ -24,7 +24,7 @@ public:
     explicit K4AInfraredImageConverter(k4a_depth_mode_t depthMode) :
         K4ADepthImageConverterBase<K4A_IMAGE_FORMAT_IR16, K4ADepthPixelColorizer::ColorizeGreyscale>(depthMode,
                                                                                                      GetIrLevels(
-                                                                                                         depthMode)){};
+                                                                                                         depthMode)) {};
 
     ~K4AInfraredImageConverter() override = default;
 

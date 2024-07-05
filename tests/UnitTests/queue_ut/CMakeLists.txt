@@ -4,8 +4,8 @@
 add_executable(queue_ut queue.cpp)
 
 target_link_libraries(queue_ut PRIVATE
-    azure::aziotsharedutil
-    gtest::gtest
+    aziotsharedutil
+    gtest
     k4ainternal::allocator
     k4ainternal::image
     k4ainternal::queue

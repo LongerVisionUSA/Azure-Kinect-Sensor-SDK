@@ -59,7 +59,10 @@ static void thread_reader1(threaded_rwlock_test_context_t *context)
         int writer1 = context->writer1_count;
         int writer2 = context->writer2_count;
 
-        context->reader1_count++;
+        // Use a temporary variable to increment the volatile variable
+        auto temp = context->reader1_count;
+        temp++;
+        context->reader1_count = temp;
 
         // No writers should be able to access the lock while
         // a reader has the lock
@@ -89,7 +92,10 @@ static void thread_reader2(threaded_rwlock_test_context_t *context)
             int writer1 = context->writer1_count;
             int writer2 = context->writer2_count;
 
-            context->reader2_count++;
+            // Use a temporary variable to increment the volatile variable
+            auto temp = context->reader2_count;
+            temp++;
+            context->reader2_count = temp;
 
             // No writers should be able to access the lock while
             // a reader has the lock
@@ -102,7 +108,10 @@ static void thread_reader2(threaded_rwlock_test_context_t *context)
         }
         else
         {
-            context->reader2_fail_count++;
+            // Use a temporary variable to increment the volatile variable
+            auto temp = context->reader2_count;
+            temp++;
+            context->reader2_fail_count = temp;
         }
 
         ThreadAPI_Sleep(1);
@@ -128,7 +137,10 @@ static void thread_writer1(threaded_rwlock_test_context_t *context)
         int writer2 = context->writer2_count;
         int writer2_fail = context->writer2_fail_count;
 
-        context->writer1_count++;
+        // Use a temporary variable to increment the volatile variable
+        auto temp = context->writer1_count;
+        temp++;
+        context->writer1_count = temp;
 
         // Wait a moment to allow other threads to run
         ThreadAPI_Sleep(100);
@@ -182,7 +194,10 @@ static void thread_writer2(threaded_rwlock_test_context_t *context)
             int reader2 = context->reader2_count;
             int writer1 = context->writer1_count;
 
-            context->writer2_count++;
+            // Use a temporary variable to increment the volatile variable
+            auto temp = context->writer2_count;
+            temp++;
+            context->writer2_count = temp;
 
             // The other writer, nor any readers should have the lock while we do
             EXPECT_EQ(reader1, context->reader1_count);
@@ -195,7 +210,10 @@ static void thread_writer2(threaded_rwlock_test_context_t *context)
         }
         else
         {
-            context->writer2_fail_count++;
+            // Use a temporary variable to increment the volatile variable
+            auto temp = context->writer2_fail_count;
+            temp++;
+            context->writer2_fail_count = temp;
         }
 
         ThreadAPI_Sleep(2);

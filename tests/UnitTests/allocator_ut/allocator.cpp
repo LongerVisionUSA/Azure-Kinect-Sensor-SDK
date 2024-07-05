@@ -581,22 +581,19 @@ static int allocator_thread_adjust_ref(void *param)
     {
         switch (data->test_case)
         {
-        case 0:
-        {
+        case 0: {
             capture_inc_ref(data->capture);
             capture_dec_ref(data->capture);
             break;
         }
-        case 1:
-        {
+        case 1: {
             capture_inc_ref(data->capture);
             capture_inc_ref(data->capture);
             capture_dec_ref(data->capture);
             capture_dec_ref(data->capture);
             break;
         }
-        default:
-        {
+        default: {
             capture_inc_ref(data->capture);
             capture_inc_ref(data->capture);
             capture_inc_ref(data->capture);

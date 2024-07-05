@@ -4,8 +4,8 @@
 add_executable(rwlock_ft rwlock.cpp)
 
 target_link_libraries(rwlock_ft PRIVATE
-    azure::aziotsharedutil
-    gtest::gtest
+    aziotsharedutil
+    gtest
     k4ainternal::rwlock
     k4ainternal::utcommon)
 
